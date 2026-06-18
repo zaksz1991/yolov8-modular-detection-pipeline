@@ -43,3 +43,6 @@ The model was validated on 5 real-world images (captured via mobile and web sour
 3. Single-item focus
 4. Overhead checkout view
 5. Backlit inventory view
+
+Validation Analysis:
+The initial test case using a high-contrast logo resulted in a misclassification ('kite'). This is attributed to the "Out-of-Distribution" nature of the input, where the model attempted to map non-COCO abstract features to the nearest known class. Subsequent testing on COCO-standard images (people, vehicles, furniture) demonstrates high precision and recall, as evidenced in the /samples directory.
