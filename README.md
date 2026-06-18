@@ -23,5 +23,23 @@ Adjusting the confidence threshold directly impacts the Precision-Recall trade-o
 * **0.7:** High precision; filters out low-certainty detections, ideal for automated reporting.
 
 ## Business Use Case: Retail Inventory Tracking
+
+## Performance Analysis (YOLOv8n vs YOLOv8s)
+| Model | Avg Inference Speed (FPS) | Resolution |
+| :--- | :--- | :--- |
+| YOLOv8n (Nano) | 3.87 | 640x640 |
+| YOLOv8s (Small) | 2.15 | 640x640 |
+
+## Relevant Retail Classes
+For the Retail Inventory Tracking use case, the following COCO classes are monitored:
+- 'bottle', 'cup', 'bowl', 'book', 'cell phone'
+
+## Test Dataset Documentation
+The model was validated on 5 real-world images (captured via mobile and web sources) covering:
+1. Low-light shelf storage
+2. High-density item placement
+3. Single-item focus
+4. Overhead checkout view
+5. Backlit inventory view
 **Proposal:** Deploy this pipeline to monitor retail shelves via mounted cameras to identify stockouts in real-time.
 **Technical Optimization Recommendation:** For this use case, I recommend **Fine-tuning (Transfer Learning)** on a custom dataset of specific product labels to increase classification accuracy beyond the generic COCO classes provided by the base model.
