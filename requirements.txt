@@ -1,0 +1,12 @@
+# Core YOLOv8 library
+ultralytics>=8.0.0
+
+# Image manipulation and plotting
+opencv-python>=4.8.0
+matplotlib>=3.7.0
+
+# Data processing
+numpy>=1.23.0
+
+# Optional: Helpful for deep learning performance monitoring
+psutil
