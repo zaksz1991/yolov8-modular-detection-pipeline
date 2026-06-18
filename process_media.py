@@ -1,16 +1,18 @@
+import cv2
 import json
 
-def export_to_json(results, output_filename='results.json'):
-    structured_data = []
-    for r in results:
-        for box in r.boxes:
-            data = {
-                "class_id": int(box.cls),
-                "confidence": float(box.conf),
-                "bbox": box.xyxy.tolist()[0] # [xmin, ymin, xmax, ymax]
-            }
-            structured_data.append(data)
-    
-    with open(output_filename, 'w') as f:
-        json.dump(structured_data, f, indent=4)
-    print(f"Results saved to {output_filename}")
+def process_media(model, source_path, is_video=False):
+    if is_video:
+        cap = cv2.VideoCapture(source_path)
+        while cap.isOpened():
+            ret, frame = cap.read()
+            if not ret: break
+            results = model.predict(frame, verbose=False)
+            # Visualize or save frame data here
+            cv2.imshow("Detection", results[0].plot())
+            if cv2.waitKey(1) & 0xFF == ord('q'): break
+        cap.release()
+        cv2.destroyAllWindows()
+    else:
+        results = model.predict(source_path)
+        # Handle single image as before...
